@@ -11,6 +11,11 @@ class Importer(object):
         self.odir = odir
 
     def pull(self,version):
+        ii = ''.join(open( 'README.tmp', 'r' ).readlines())
+        oos = ii.replace( '__version__', version )
+        oo = open( 'README.md', 'w' )
+        oo.write(oos)
+        oo.close()
         sdir = '%s/%s' % (self.idir,version)
         assert os.path.isdir( sdir ), '%s not found' % sdir
         sdir += '/dreqPy/docs'
